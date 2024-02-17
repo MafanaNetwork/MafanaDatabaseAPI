@@ -1,4 +1,4 @@
-package me.TahaCheji.mysqlData;
+package me.tahacheji.mafana.data;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;

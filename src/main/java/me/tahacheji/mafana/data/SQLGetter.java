@@ -1,5 +1,5 @@
-package me.TahaCheji.mysqlData;
-import me.TahaCheji.MainAPI;
+package me.tahacheji.mafana.data;
+import me.tahacheji.mafana.MafanaDatabaseAPI;
 import org.bukkit.Bukkit;
 
 import java.sql.PreparedStatement;
@@ -14,87 +14,87 @@ public class SQLGetter {
 
     public MySQL mySQL;
     public String tableString;
-    public List<MysqlValue> mysqlValues = new ArrayList<>();
+    public List<DatabaseValue> databaseValues = new ArrayList<>();
 
     public SQLGetter(MySQL plugin) {
         this.mySQL = plugin;
     }
 
-    public void createTable(String tableName, MysqlValue... mysqlValues) {
+    public void createTable(String tableName, DatabaseValue... databaseValues) {
         tableString = tableName;
         PreparedStatement ps;
         try {
             String x3 = "CREATE TABLE IF NOT EXISTS " + tableName + " (id INT AUTO_INCREMENT PRIMARY KEY, ";
-            for (MysqlValue mysqlValue : mysqlValues) {
-                if (mysqlValues.length != 1) {
-                    if (mysqlValue.getStringValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+            for (DatabaseValue databaseValue : databaseValues) {
+                if (databaseValues.length != 1) {
+                    if (databaseValue.getStringValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " VARCHAR(100),";
+                            x3 = x3 + databaseValue.getName() + " VARCHAR(100),";
                         }
                         continue;
                     }
-                    if (mysqlValue.getIntValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getIntValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " INT(100),";
+                            x3 = x3 + databaseValue.getName() + " INT(100),";
                         }
                         continue;
                     }
-                    if (mysqlValue.getDoubleValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getDoubleValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " DOUBLE(5,0),";
+                            x3 = x3 + databaseValue.getName() + " DOUBLE(5,0),";
                         }
                         continue;
                     }
-                    if (mysqlValue.getUuidValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getUuidValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " VARCHAR(100),";
+                            x3 = x3 + databaseValue.getName() + " VARCHAR(100),";
                         }
                     }
-                    getMysqlValues().add(mysqlValue);
+                    getMysqlValues().add(databaseValue);
                 } else {
-                    if (mysqlValue.getStringValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getStringValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " VARCHAR(100)";
+                            x3 = x3 + databaseValue.getName() + " VARCHAR(100)";
                         }
                         continue;
                     }
-                    if (mysqlValue.getIntValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getIntValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " INT(100)";
+                            x3 = x3 + databaseValue.getName() + " INT(100)";
                         }
                         continue;
                     }
-                    if (mysqlValue.getDoubleValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getDoubleValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " DOUBLE(5,0)";
+                            x3 = x3 + databaseValue.getName() + " DOUBLE(5,0)";
                         }
                         continue;
                     }
-                    if (mysqlValue.getUuidValue() != null) {
-                        if(mysqlValue.getX() != null) {
-                            x3 = x3 + mysqlValue.getName() + " " + mysqlValue.getX() + ",";
+                    if (databaseValue.getUuidValue() != null) {
+                        if(databaseValue.getX() != null) {
+                            x3 = x3 + databaseValue.getName() + " " + databaseValue.getX() + ",";
                         } else {
-                            x3 = x3 + mysqlValue.getName() + " VARCHAR(100)";
+                            x3 = x3 + databaseValue.getName() + " VARCHAR(100)";
                         }
                     }
-                    getMysqlValues().add(mysqlValue);
+                    getMysqlValues().add(databaseValue);
                 }
             }
-            if (mysqlValues.length != 1) {
+            if (databaseValues.length != 1) {
                 x3 = x3 + "UUID VARCHAR(100)";
             }
             x3 = x3 + ")";
@@ -120,7 +120,7 @@ public class SQLGetter {
     public CompletableFuture<Boolean> existsAsync(UUID uuid) {
         CompletableFuture<Boolean> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
                 PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT * FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
@@ -136,17 +136,17 @@ public class SQLGetter {
         return future;
     }
 
-    public void setInt(MysqlValue mysqlValue) {
+    public void setInt(DatabaseValue databaseValue) {
         try {
-            if(!exists(mysqlValue.getMysqlUUID())) {
-                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                ps2.setInt(1, mysqlValue.getIntValue());
-                ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+            if(!exists(databaseValue.getMysqlUUID())) {
+                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                ps2.setInt(1, databaseValue.getIntValue());
+                ps2.setString(2, databaseValue.getMysqlUUID().toString());
                 ps2.executeUpdate();
             } else {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                ps.setInt(1, mysqlValue.getIntValue());
-                ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                ps.setInt(1, databaseValue.getIntValue());
+                ps.setString(2, databaseValue.getMysqlUUID().toString());
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
@@ -154,9 +154,9 @@ public class SQLGetter {
         }
     }
 
-    public void removeInt(int i, MysqlValue mysqlValue) {
+    public void removeInt(int i, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + mysqlValue.getName() + " = ?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + databaseValue.getName() + " = ?");
             ps.setInt(1, i);
             ps.executeUpdate();
             ps.close();
@@ -165,14 +165,14 @@ public class SQLGetter {
             // Handle the exception appropriately, such as logging an error or notifying the player about the failure.
         }
     }
-    public int getInt(UUID uuid, MysqlValue mysqlValue) {
+    public int getInt(UUID uuid, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM "  + tableString + " WHERE UUID=?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM "  + tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             int xp = 0;
             if(rs.next()) {
-                xp = rs.getInt(mysqlValue.getName());
+                xp = rs.getInt(databaseValue.getName());
                 return xp;
             }
         } catch (SQLException e) {
@@ -181,14 +181,14 @@ public class SQLGetter {
         return 0;
     }
 
-    public List<Integer> getAllIntager(UUID uuid, MysqlValue mysqlValue) throws SQLException {
+    public List<Integer> getAllIntager(UUID uuid, DatabaseValue databaseValue) throws SQLException {
         List<Integer> x = new ArrayList<>();
-        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
         ps.setString(1, uuid.toString());
         ResultSet resultSet = ps.executeQuery();
         try {
             while (resultSet.next()) {
-                Integer xs = resultSet.getInt(mysqlValue.getName());
+                Integer xs = resultSet.getInt(databaseValue.getName());
                 x.add(xs);
             }
         } catch (SQLException e) {
@@ -197,14 +197,14 @@ public class SQLGetter {
         return x;
     }
 
-    public List<Integer> getAllIntager(MysqlValue mysqlValue) throws SQLException {
+    public List<Integer> getAllIntager(DatabaseValue databaseValue) throws SQLException {
         List<Integer> x = new ArrayList();
-        PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + this.tableString);
+        PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString);
         ResultSet resultSet = ps.executeQuery();
 
         try {
             while(resultSet.next()) {
-                Integer xs = resultSet.getInt(mysqlValue.getName());
+                Integer xs = resultSet.getInt(databaseValue.getName());
                 x.add(xs);
             }
         } catch (SQLException var6) {
@@ -214,20 +214,20 @@ public class SQLGetter {
         return x;
     }
 
-    public CompletableFuture<Void> setIntAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<Void> setIntAsync(DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                if (!exists(mysqlValue.getMysqlUUID())) {
-                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                    ps2.setInt(1, mysqlValue.getIntValue());
-                    ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+                if (!exists(databaseValue.getMysqlUUID())) {
+                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                    ps2.setInt(1, databaseValue.getIntValue());
+                    ps2.setString(2, databaseValue.getMysqlUUID().toString());
                     ps2.executeUpdate();
                 } else {
-                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                    ps.setInt(1, mysqlValue.getIntValue());
-                    ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                    ps.setInt(1, databaseValue.getIntValue());
+                    ps.setString(2, databaseValue.getMysqlUUID().toString());
                     ps.executeUpdate();
                 }
                 future.complete(null);
@@ -240,12 +240,12 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Void> removeIntAsync(int i, MysqlValue mysqlValue) {
+    public CompletableFuture<Void> removeIntAsync(int i, DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + mysqlValue.getName() + " = ?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + databaseValue.getName() + " = ?");
                 ps.setInt(1, i);
                 ps.executeUpdate();
                 ps.close();
@@ -259,17 +259,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Integer> getIntAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<Integer> getIntAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 int xp = 0;
                 if (rs.next()) {
-                    xp = rs.getInt(mysqlValue.getName());
+                    xp = rs.getInt(databaseValue.getName());
                 }
                 future.complete(xp);
             } catch (SQLException e) {
@@ -281,17 +281,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<Integer>> getAllIntegerAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<List<Integer>> getAllIntegerAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<List<Integer>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<Integer> x = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet resultSet = ps.executeQuery();
                 while (resultSet.next()) {
-                    Integer xs = resultSet.getInt(mysqlValue.getName());
+                    Integer xs = resultSet.getInt(databaseValue.getName());
                     x.add(xs);
                 }
                 future.complete(x);
@@ -304,16 +304,16 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<Integer>> getAllIntegerAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<List<Integer>> getAllIntegerAsync(DatabaseValue databaseValue) {
         CompletableFuture<List<Integer>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<Integer> x = new ArrayList<>();
             try {
-                PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + this.tableString);
+                PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString);
                 ResultSet resultSet = ps.executeQuery();
                 while (resultSet.next()) {
-                    Integer xs = resultSet.getInt(mysqlValue.getName());
+                    Integer xs = resultSet.getInt(databaseValue.getName());
                     x.add(xs);
                 }
                 future.complete(x);
@@ -327,17 +327,17 @@ public class SQLGetter {
     }
 
 
-    public void setString(MysqlValue mysqlValue) {
+    public void setString(DatabaseValue databaseValue) {
         try {
-            if(!exists(mysqlValue.getMysqlUUID())) {
-                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                ps2.setString(1, mysqlValue.getStringValue());
-                ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+            if(!exists(databaseValue.getMysqlUUID())) {
+                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                ps2.setString(1, databaseValue.getStringValue());
+                ps2.setString(2, databaseValue.getMysqlUUID().toString());
                 ps2.executeUpdate();
             } else {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                ps.setString(1, mysqlValue.getStringValue());
-                ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                ps.setString(1, databaseValue.getStringValue());
+                ps.setString(2, databaseValue.getMysqlUUID().toString());
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
@@ -345,9 +345,9 @@ public class SQLGetter {
         }
     }
 
-    public void removeString(String i, MysqlValue mysqlValue) {
+    public void removeString(String i, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + mysqlValue.getName() + " = ?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + databaseValue.getName() + " = ?");
             ps.setString(1, i);
             ps.executeUpdate();
             ps.close();
@@ -355,14 +355,14 @@ public class SQLGetter {
             e.printStackTrace();
         }
     }
-    public String getString(UUID uuid, MysqlValue mysqlValue) {
+    public String getString(UUID uuid, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM "  + tableString + " WHERE UUID=?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM "  + tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             String xp = "";
             if(rs.next()) {
-                xp = rs.getString(mysqlValue.getName());
+                xp = rs.getString(databaseValue.getName());
                 return xp;
             }
         } catch (SQLException e) {
@@ -371,13 +371,13 @@ public class SQLGetter {
         return "";
     }
 
-    public List<String> getAllString(MysqlValue mysqlValue) throws SQLException {
+    public List<String> getAllString(DatabaseValue databaseValue) throws SQLException {
         List<String> x = new ArrayList<>();
-        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
         ResultSet resultSet = ps.executeQuery();
         try {
             while (resultSet.next()) {
-                String xs = resultSet.getString(mysqlValue.getName());
+                String xs = resultSet.getString(databaseValue.getName());
                 x.add(xs);
             }
         } catch (SQLException e) {
@@ -386,14 +386,14 @@ public class SQLGetter {
         return x;
     }
 
-    public List<String> getAllString(UUID uuid, MysqlValue mysqlValue) {
+    public List<String> getAllString(UUID uuid, DatabaseValue databaseValue) {
         List<String> values = new ArrayList<>();
         try {
-            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
+            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String xp = rs.getString(mysqlValue.getName());
+                String xp = rs.getString(databaseValue.getName());
                 values.add(xp);
             }
         } catch (SQLException var6) {
@@ -403,20 +403,20 @@ public class SQLGetter {
         return values;
     }
 
-    public CompletableFuture<Void> setStringAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<Void> setStringAsync(DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                if (!exists(mysqlValue.getMysqlUUID())) {
-                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                    ps2.setString(1, mysqlValue.getStringValue());
-                    ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+                if (!exists(databaseValue.getMysqlUUID())) {
+                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                    ps2.setString(1, databaseValue.getStringValue());
+                    ps2.setString(2, databaseValue.getMysqlUUID().toString());
                     ps2.executeUpdate();
                 } else {
-                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                    ps.setString(1, mysqlValue.getStringValue());
-                    ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                    ps.setString(1, databaseValue.getStringValue());
+                    ps.setString(2, databaseValue.getMysqlUUID().toString());
                     ps.executeUpdate();
                 }
                 future.complete(null);
@@ -429,12 +429,12 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Void> removeStringAsync(String i, MysqlValue mysqlValue) {
+    public CompletableFuture<Void> removeStringAsync(String i, DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + mysqlValue.getName() + " = ?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + databaseValue.getName() + " = ?");
                 ps.setString(1, i);
                 ps.executeUpdate();
                 ps.close();
@@ -448,17 +448,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<String> getStringAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<String> getStringAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<String> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 String xp = "";
                 if (rs.next()) {
-                    xp = rs.getString(mysqlValue.getName());
+                    xp = rs.getString(databaseValue.getName());
                 }
                 future.complete(xp);
             } catch (SQLException e) {
@@ -470,16 +470,16 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<String>> getAllStringAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<List<String>> getAllStringAsync(DatabaseValue databaseValue) {
         CompletableFuture<List<String>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<String> values = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
                 ResultSet resultSet = ps.executeQuery();
                 while (resultSet.next()) {
-                    String xs = resultSet.getString(mysqlValue.getName());
+                    String xs = resultSet.getString(databaseValue.getName());
                     values.add(xs);
                 }
                 future.complete(values);
@@ -492,17 +492,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<String>> getAllStringAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<List<String>> getAllStringAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<List<String>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<String> values = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String xp = rs.getString(mysqlValue.getName());
+                    String xp = rs.getString(databaseValue.getName());
                     values.add(xp);
                 }
                 future.complete(values);
@@ -517,17 +517,17 @@ public class SQLGetter {
 
 
 
-    public void setDouble(MysqlValue mysqlValue) {
+    public void setDouble(DatabaseValue databaseValue) {
         try {
-            if(!exists(mysqlValue.getMysqlUUID())) {
-                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                ps2.setDouble(1, mysqlValue.getDoubleValue());
-                ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+            if(!exists(databaseValue.getMysqlUUID())) {
+                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                ps2.setDouble(1, databaseValue.getDoubleValue());
+                ps2.setString(2, databaseValue.getMysqlUUID().toString());
                 ps2.executeUpdate();
             } else {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                ps.setDouble(1, mysqlValue.getDoubleValue());
-                ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                ps.setDouble(1, databaseValue.getDoubleValue());
+                ps.setString(2, databaseValue.getMysqlUUID().toString());
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
@@ -535,9 +535,9 @@ public class SQLGetter {
         }
     }
 
-    public void removeDouble(Double i, MysqlValue mysqlValue) {
+    public void removeDouble(Double i, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + mysqlValue.getName() + " = ?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + databaseValue.getName() + " = ?");
             ps.setDouble(1, i);
             ps.executeUpdate();
             ps.close();
@@ -545,15 +545,15 @@ public class SQLGetter {
             e.printStackTrace();
         }
     }
-    public Double getDouble(UUID uuid, MysqlValue mysqlValue) {
+    public Double getDouble(UUID uuid, DatabaseValue databaseValue) {
         double xp = 0;
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             xp = 0.0;
             if (rs.next()) {
-                xp = rs.getDouble(mysqlValue.getName());
+                xp = rs.getDouble(databaseValue.getName());
                 return xp;
             }
         } catch (SQLException e) {
@@ -562,13 +562,13 @@ public class SQLGetter {
         return xp;
     }
 
-    public List<Double> getAllDouble(MysqlValue mysqlValue) throws SQLException {
+    public List<Double> getAllDouble(DatabaseValue databaseValue) throws SQLException {
         List<Double> x = new ArrayList<>();
-        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
         ResultSet resultSet = ps.executeQuery();
         try {
             while (resultSet.next()) {
-                Double xs = resultSet.getDouble(mysqlValue.getName());
+                Double xs = resultSet.getDouble(databaseValue.getName());
                 x.add(xs);
             }
         } catch (SQLException e) {
@@ -577,14 +577,14 @@ public class SQLGetter {
         return x;
     }
 
-    public List<Double> getAllDouble(UUID uuid, MysqlValue mysqlValue) {
+    public List<Double> getAllDouble(UUID uuid, DatabaseValue databaseValue) {
         List<Double> values = new ArrayList<>();
         try {
-            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
+            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Double xp = rs.getDouble(mysqlValue.getName());
+                Double xp = rs.getDouble(databaseValue.getName());
                 values.add(xp);
             }
         } catch (SQLException var6) {
@@ -594,20 +594,20 @@ public class SQLGetter {
         return values;
     }
 
-    public CompletableFuture<Void> setDoubleAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<Void> setDoubleAsync(DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                if (!exists(mysqlValue.getMysqlUUID())) {
-                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                    ps2.setDouble(1, mysqlValue.getDoubleValue());
-                    ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+                if (!exists(databaseValue.getMysqlUUID())) {
+                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                    ps2.setDouble(1, databaseValue.getDoubleValue());
+                    ps2.setString(2, databaseValue.getMysqlUUID().toString());
                     ps2.executeUpdate();
                 } else {
-                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                    ps.setDouble(1, mysqlValue.getDoubleValue());
-                    ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                    ps.setDouble(1, databaseValue.getDoubleValue());
+                    ps.setString(2, databaseValue.getMysqlUUID().toString());
                     ps.executeUpdate();
                 }
                 future.complete(null);
@@ -620,12 +620,12 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Void> removeDoubleAsync(Double i, MysqlValue mysqlValue) {
+    public CompletableFuture<Void> removeDoubleAsync(Double i, DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + mysqlValue.getName() + " = ?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + databaseValue.getName() + " = ?");
                 ps.setDouble(1, i);
                 ps.executeUpdate();
                 ps.close();
@@ -639,17 +639,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Double> getDoubleAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<Double> getDoubleAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<Double> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 double xp = 0.0;
                 if (rs.next()) {
-                    xp = rs.getDouble(mysqlValue.getName());
+                    xp = rs.getDouble(databaseValue.getName());
                 }
                 future.complete(xp);
             } catch (SQLException e) {
@@ -661,16 +661,16 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<Double>> getAllDoubleAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<List<Double>> getAllDoubleAsync(DatabaseValue databaseValue) {
         CompletableFuture<List<Double>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<Double> values = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
                 ResultSet resultSet = ps.executeQuery();
                 while (resultSet.next()) {
-                    Double xs = resultSet.getDouble(mysqlValue.getName());
+                    Double xs = resultSet.getDouble(databaseValue.getName());
                     values.add(xs);
                 }
                 future.complete(values);
@@ -684,26 +684,26 @@ public class SQLGetter {
     }
 
 
-    public void setUUID(MysqlValue mysqlValue) {
+    public void setUUID(DatabaseValue databaseValue) {
         try {
-            if(!exists(mysqlValue.getMysqlUUID())) {
-                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                ps2.setString(1, mysqlValue.getUuidValue().toString());
-                ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+            if(!exists(databaseValue.getMysqlUUID())) {
+                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                ps2.setString(1, databaseValue.getUuidValue().toString());
+                ps2.setString(2, databaseValue.getMysqlUUID().toString());
                 ps2.executeUpdate();
             } else {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                ps.setString(1, mysqlValue.getUuidValue().toString());
-                ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                ps.setString(1, databaseValue.getUuidValue().toString());
+                ps.setString(2, databaseValue.getMysqlUUID().toString());
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void removeUUID(UUID i, MysqlValue mysqlValue) {
+    public void removeUUID(UUID i, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + mysqlValue.getName() + " = ?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + databaseValue.getName() + " = ?");
             ps.setString(1, i.toString());
             ps.executeUpdate();
             ps.close();
@@ -711,14 +711,14 @@ public class SQLGetter {
             e.printStackTrace();
         }
     }
-    public UUID getUUID(UUID uuid, MysqlValue mysqlValue) {
+    public UUID getUUID(UUID uuid, DatabaseValue databaseValue) {
         UUID xp = null;
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                xp = UUID.fromString(rs.getString(mysqlValue.getName()));
+                xp = UUID.fromString(rs.getString(databaseValue.getName()));
                 return xp;
             }
         } catch (SQLException e) {
@@ -727,13 +727,13 @@ public class SQLGetter {
         return xp;
     }
 
-    public List<UUID> getAllUUID(MysqlValue mysqlValue) throws SQLException {
+    public List<UUID> getAllUUID(DatabaseValue databaseValue) throws SQLException {
         List<UUID> players = new ArrayList<>();
-        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
         ResultSet resultSet = ps.executeQuery();
         try {
             while (resultSet.next()) {
-                UUID playerUUID = UUID.fromString(resultSet.getString(mysqlValue.getName()));
+                UUID playerUUID = UUID.fromString(resultSet.getString(databaseValue.getName()));
                 players.add(playerUUID);
             }
         } catch (SQLException e) {
@@ -742,14 +742,14 @@ public class SQLGetter {
         return players;
     }
 
-    public List<UUID> getAllUUID(UUID uuid, MysqlValue mysqlValue) {
+    public List<UUID> getAllUUID(UUID uuid, DatabaseValue databaseValue) {
         List<UUID> values = new ArrayList<>();
         try {
-            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
+            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                UUID xp = UUID.fromString(rs.getString(mysqlValue.getName()));
+                UUID xp = UUID.fromString(rs.getString(databaseValue.getName()));
                 values.add(xp);
             }
         } catch (SQLException var6) {
@@ -759,20 +759,20 @@ public class SQLGetter {
         return values;
     }
 
-    public CompletableFuture<Void> setUUIDAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<Void> setUUIDAsync(DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                if (!exists(mysqlValue.getMysqlUUID())) {
-                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                    ps2.setString(1, mysqlValue.getUuidValue().toString());
-                    ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+                if (!exists(databaseValue.getMysqlUUID())) {
+                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                    ps2.setString(1, databaseValue.getUuidValue().toString());
+                    ps2.setString(2, databaseValue.getMysqlUUID().toString());
                     ps2.executeUpdate();
                 } else {
-                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? WHERE UUID=?");
-                    ps.setString(1, mysqlValue.getUuidValue().toString());
-                    ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? WHERE UUID=?");
+                    ps.setString(1, databaseValue.getUuidValue().toString());
+                    ps.setString(2, databaseValue.getMysqlUUID().toString());
                     ps.executeUpdate();
                 }
                 future.complete(null);
@@ -785,12 +785,12 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Void> removeUUIDAsync(UUID i, MysqlValue mysqlValue) {
+    public CompletableFuture<Void> removeUUIDAsync(UUID i, DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + mysqlValue.getName() + " = ?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + databaseValue.getName() + " = ?");
                 ps.setString(1, i.toString());
                 ps.executeUpdate();
                 ps.close();
@@ -804,17 +804,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<UUID> getUUIDAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<UUID> getUUIDAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<UUID> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             UUID xp = null;
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    xp = UUID.fromString(rs.getString(mysqlValue.getName()));
+                    xp = UUID.fromString(rs.getString(databaseValue.getName()));
                 }
                 future.complete(xp);
             } catch (SQLException e) {
@@ -826,16 +826,16 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<UUID>> getAllUUIDAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<List<UUID>> getAllUUIDAsync(DatabaseValue databaseValue) {
         CompletableFuture<List<UUID>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<UUID> players = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
                 ResultSet resultSet = ps.executeQuery();
                 while (resultSet.next()) {
-                    UUID playerUUID = UUID.fromString(resultSet.getString(mysqlValue.getName()));
+                    UUID playerUUID = UUID.fromString(resultSet.getString(databaseValue.getName()));
                     players.add(playerUUID);
                 }
                 future.complete(players);
@@ -849,26 +849,26 @@ public class SQLGetter {
     }
 
 
-    public void setObject(MysqlValue mysqlValue) {
+    public void setObject(DatabaseValue databaseValue) {
         try {
-            if(!exists(mysqlValue.getMysqlUUID())) {
-                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                ps2.setString(1, mysqlValue.getUuidValue().toString());
-                ps2.setObject(2, mysqlValue.getObjectValue());
+            if(!exists(databaseValue.getMysqlUUID())) {
+                PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                ps2.setString(1, databaseValue.getUuidValue().toString());
+                ps2.setObject(2, databaseValue.getObjectValue());
                 ps2.executeUpdate();
             } else {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? " + "WHERE UUID=?");
-                ps.setString(1, mysqlValue.getUuidValue().toString());
-                ps.setObject(2, mysqlValue.getObjectValue());
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? " + "WHERE UUID=?");
+                ps.setString(1, databaseValue.getUuidValue().toString());
+                ps.setObject(2, databaseValue.getObjectValue());
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void removeObject(Object i, MysqlValue mysqlValue) {
+    public void removeObject(Object i, DatabaseValue databaseValue) {
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + mysqlValue.getName() + " = ?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString  +" WHERE " + databaseValue.getName() + " = ?");
             ps.setObject(1, i);
             ps.executeUpdate();
             ps.close();
@@ -877,14 +877,14 @@ public class SQLGetter {
             // Handle the exception appropriately, such as logging an error or notifying the player about the failure.
         }
     }
-    public Object getObject(UUID uuid, MysqlValue mysqlValue) {
+    public Object getObject(UUID uuid, DatabaseValue databaseValue) {
         Object xp;
         try {
-            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                xp = rs.getObject(mysqlValue.getName());
+                xp = rs.getObject(databaseValue.getName());
                 return xp;
             }
         } catch (SQLException e) {
@@ -895,13 +895,13 @@ public class SQLGetter {
 
 
 
-    public List<Object> getAllObject(MysqlValue mysqlValue) throws SQLException {
+    public List<Object> getAllObject(DatabaseValue databaseValue) throws SQLException {
         List<Object> x = new ArrayList<>();
-        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
         ResultSet resultSet = ps.executeQuery();
         try {
             while (resultSet.next()) {
-                Object playerUUID = resultSet.getObject(mysqlValue.getName());
+                Object playerUUID = resultSet.getObject(databaseValue.getName());
                 x.add(playerUUID);
             }
         } catch (SQLException e) {
@@ -910,14 +910,14 @@ public class SQLGetter {
         return x;
     }
 
-    public List<Object> getAllObject(UUID uuid, MysqlValue mysqlValue) {
+    public List<Object> getAllObject(UUID uuid, DatabaseValue databaseValue) {
         List<Object> values = new ArrayList<>();
         try {
-            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
+            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Object xp = rs.getObject(mysqlValue.getName());
+                Object xp = rs.getObject(databaseValue.getName());
                 values.add(xp);
             }
         } catch (SQLException var6) {
@@ -927,17 +927,17 @@ public class SQLGetter {
         return values;
     }
 
-    public CompletableFuture<Object> getObjectAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<Object> getObjectAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<Object> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 Object result = null;
                 if (rs.next()) {
-                    result = rs.getObject(mysqlValue.getName());
+                    result = rs.getObject(databaseValue.getName());
                 }
                 future.complete(result);
             } catch (SQLException e) {
@@ -949,17 +949,17 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<Object>> getAllObjectAsync(UUID uuid, MysqlValue mysqlValue) {
+    public CompletableFuture<List<Object>> getAllObjectAsync(UUID uuid, DatabaseValue databaseValue) {
         CompletableFuture<List<Object>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<Object> values = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString + " WHERE UUID=?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString + " WHERE UUID=?");
                 ps.setString(1, uuid.toString());
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Object result = rs.getObject(mysqlValue.getName());
+                    Object result = rs.getObject(databaseValue.getName());
                     values.add(result);
                 }
                 future.complete(values);
@@ -972,20 +972,20 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Void> setObjectAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<Void> setObjectAsync(DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                if (!exists(mysqlValue.getMysqlUUID())) {
-                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + mysqlValue.getName() + ",UUID) VALUES (?,?)");
-                    ps2.setObject(1, mysqlValue.getObjectValue());
-                    ps2.setString(2, mysqlValue.getMysqlUUID().toString());
+                if (!exists(databaseValue.getMysqlUUID())) {
+                    PreparedStatement ps2 = getMySQL().getConnection().prepareStatement("INSERT IGNORE INTO " + tableString + " (" + databaseValue.getName() + ",UUID) VALUES (?,?)");
+                    ps2.setObject(1, databaseValue.getObjectValue());
+                    ps2.setString(2, databaseValue.getMysqlUUID().toString());
                     ps2.executeUpdate();
                 } else {
-                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + mysqlValue.getName() + "=? WHERE UUID=?");
-                    ps.setObject(1, mysqlValue.getObjectValue());
-                    ps.setString(2, mysqlValue.getMysqlUUID().toString());
+                    PreparedStatement ps = getMySQL().getConnection().prepareStatement("UPDATE " + tableString + " SET " + databaseValue.getName() + "=? WHERE UUID=?");
+                    ps.setObject(1, databaseValue.getObjectValue());
+                    ps.setString(2, databaseValue.getMysqlUUID().toString());
                     ps.executeUpdate();
                 }
                 future.complete(null);
@@ -998,12 +998,12 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<Void> removeObjectAsync(Object i, MysqlValue mysqlValue) {
+    public CompletableFuture<Void> removeObjectAsync(Object i, DatabaseValue databaseValue) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + mysqlValue.getName() + " = ?");
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("DELETE FROM " + tableString + " WHERE " + databaseValue.getName() + " = ?");
                 ps.setObject(1, i);
                 ps.executeUpdate();
                 ps.close();
@@ -1017,16 +1017,16 @@ public class SQLGetter {
         return future;
     }
 
-    public CompletableFuture<List<Object>> getAllObjectAsync(MysqlValue mysqlValue) {
+    public CompletableFuture<List<Object>> getAllObjectAsync(DatabaseValue databaseValue) {
         CompletableFuture<List<Object>> future = new CompletableFuture<>();
 
-        Bukkit.getScheduler().runTaskAsynchronously(MainAPI.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(MafanaDatabaseAPI.getInstance(), () -> {
             List<Object> values = new ArrayList<>();
             try {
-                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + mysqlValue.getName() + " FROM " + tableString);
+                PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
                 ResultSet resultSet = ps.executeQuery();
                 while (resultSet.next()) {
-                    Object result = resultSet.getObject(mysqlValue.getName());
+                    Object result = resultSet.getObject(databaseValue.getName());
                     values.add(result);
                 }
                 future.complete(values);
@@ -1043,7 +1043,7 @@ public class SQLGetter {
         return mySQL;
     }
 
-    public List<MysqlValue> getMysqlValues() {
-        return mysqlValues;
+    public List<DatabaseValue> getMysqlValues() {
+        return databaseValues;
     }
 }

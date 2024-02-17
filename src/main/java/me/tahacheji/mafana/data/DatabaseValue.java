@@ -1,8 +1,8 @@
-package me.TahaCheji.mysqlData;
+package me.tahacheji.mafana.data;
 
 import java.util.UUID;
 
-public class MysqlValue {
+public class DatabaseValue {
     public final String name;
     private UUID mysqlUUID;
 
@@ -14,126 +14,126 @@ public class MysqlValue {
 
     private String x = null;
 
-    public MysqlValue(String name) {
+    public DatabaseValue(String name) {
         this.name = name;
     }
 
-    public MysqlValue(String name,UUID mysqlUUID, Integer intValue) {
+    public DatabaseValue(String name, UUID mysqlUUID, Integer intValue) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.intValue = intValue;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, String stringValue) {
+    public DatabaseValue(String name, UUID mysqlUUID, String stringValue) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.stringValue = stringValue;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, Double doubleValue) {
+    public DatabaseValue(String name, UUID mysqlUUID, Double doubleValue) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.doubleValue = doubleValue;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, Object objectValue) {
+    public DatabaseValue(String name, UUID mysqlUUID, Object objectValue) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.objectValue = objectValue;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, UUID uuidValue) {
+    public DatabaseValue(String name, UUID mysqlUUID, UUID uuidValue) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.uuidValue = uuidValue;
     }
 
-    public MysqlValue(String name, Integer intValue) {
+    public DatabaseValue(String name, Integer intValue) {
         this.name = name;
         this.intValue = intValue;
     }
 
-    public MysqlValue(String name, String stringValue) {
+    public DatabaseValue(String name, String stringValue) {
         this.name = name;
         this.stringValue = stringValue;
     }
 
-    public MysqlValue(String name, Double doubleValue) {
+    public DatabaseValue(String name, Double doubleValue) {
         this.name = name;
         this.doubleValue = doubleValue;
     }
 
-    public MysqlValue(String name,Object objectValue) {
+    public DatabaseValue(String name, Object objectValue) {
         this.name = name;
         this.objectValue = objectValue;
     }
 
-    public MysqlValue(String name, UUID uuidValue) {
+    public DatabaseValue(String name, UUID uuidValue) {
         this.name = name;
         this.uuidValue = uuidValue;
     }
 
     ///
 
-    public MysqlValue(String name,UUID mysqlUUID, Integer intValue, String x) {
+    public DatabaseValue(String name, UUID mysqlUUID, Integer intValue, String x) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.intValue = intValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, String stringValue, String x) {
+    public DatabaseValue(String name, UUID mysqlUUID, String stringValue, String x) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.stringValue = stringValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, Double doubleValue, String x) {
+    public DatabaseValue(String name, UUID mysqlUUID, Double doubleValue, String x) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.doubleValue = doubleValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, Object objectValue, String x) {
+    public DatabaseValue(String name, UUID mysqlUUID, Object objectValue, String x) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.objectValue = objectValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, UUID mysqlUUID, UUID uuidValue, String x) {
+    public DatabaseValue(String name, UUID mysqlUUID, UUID uuidValue, String x) {
         this.name = name;
         this.mysqlUUID = mysqlUUID;
         this.uuidValue = uuidValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, Integer intValue, String x) {
+    public DatabaseValue(String name, Integer intValue, String x) {
         this.name = name;
         this.intValue = intValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, String stringValue, String x) {
+    public DatabaseValue(String name, String stringValue, String x) {
         this.name = name;
         this.stringValue = stringValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, Double doubleValue, String x) {
+    public DatabaseValue(String name, Double doubleValue, String x) {
         this.name = name;
         this.doubleValue = doubleValue;
     }
 
-    public MysqlValue(String name,Object objectValue, String x) {
+    public DatabaseValue(String name, Object objectValue, String x) {
         this.name = name;
         this.objectValue = objectValue;
         this.x = x;
     }
 
-    public MysqlValue(String name, UUID uuidValue, String x, boolean tr) {
+    public DatabaseValue(String name, UUID uuidValue, String x, boolean tr) {
         this.name = name;
         this.uuidValue = uuidValue;
         this.x = x;

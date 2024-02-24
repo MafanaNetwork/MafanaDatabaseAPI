@@ -158,6 +158,22 @@ public class SQLGetter {
         return x;
     }
 
+    public int getIntSync(UUID uuid, DatabaseValue databaseValue) {
+        try {
+            PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM "  + tableString + " WHERE UUID=?");
+            ps.setString(1, uuid.toString());
+            ResultSet rs = ps.executeQuery();
+            int xp = 0;
+            if(rs.next()) {
+                xp = rs.getInt(databaseValue.getName());
+                return xp;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public List<Integer> getAllIntSync(DatabaseValue databaseValue) throws SQLException {
         List<Integer> x = new ArrayList();
         PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString);
@@ -710,7 +726,40 @@ public class SQLGetter {
             return future;
         }
 
-        public MySQL getMySQL () {
+    public List<UUID> getAllUUIDSync(DatabaseValue databaseValue) throws SQLException {
+        List<UUID> players = new ArrayList<>();
+        PreparedStatement ps = getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + tableString);
+        ResultSet resultSet = ps.executeQuery();
+        try {
+            while (resultSet.next()) {
+                UUID playerUUID = UUID.fromString(resultSet.getString(databaseValue.getName()));
+                players.add(playerUUID);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return players;
+    }
+
+    public List<UUID> getAllUUIDSync(UUID uuid, DatabaseValue databaseValue) {
+        List<UUID> values = new ArrayList<>();
+        try {
+            PreparedStatement ps = this.getMySQL().getConnection().prepareStatement("SELECT " + databaseValue.getName() + " FROM " + this.tableString + " WHERE UUID=?");
+            ps.setString(1, uuid.toString());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                UUID xp = UUID.fromString(rs.getString(databaseValue.getName()));
+                values.add(xp);
+            }
+        } catch (SQLException var6) {
+            var6.printStackTrace();
+        }
+
+        return values;
+    }
+
+
+    public MySQL getMySQL () {
             return mySQL;
         }
 

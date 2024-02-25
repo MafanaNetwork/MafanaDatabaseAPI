@@ -29,7 +29,6 @@ public class SQLGetter {
 
     public void createTable(String tableName, DatabaseValue... databaseValues) {
         tableString = tableName;
-        PreparedStatement ps;
         try {
             StringBuilder x3 = new StringBuilder("CREATE TABLE IF NOT EXISTS " + tableName + " (id INT AUTO_INCREMENT PRIMARY KEY, ");
             for (DatabaseValue databaseValue : databaseValues) {
@@ -105,8 +104,10 @@ public class SQLGetter {
                 x3.append("UUID VARCHAR(100)");
             }
             x3.append(")");
-            ps = mySQL.getConnection().prepareStatement(x3.toString());
-            ps.executeUpdate();
+            try (Connection connection = getMySQL().getConnection();
+                 PreparedStatement ps = connection.prepareStatement(x3.toString())) {
+                ps.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
